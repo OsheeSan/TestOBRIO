@@ -9,6 +9,8 @@ import Foundation
 
 class BallanceViewModel {
     
+    private var bitcoinsAmount: Double = 3
+    
     private var transactionGroups: [Date: TransactionGroup] = [:]
     
     func addTransactions(_ transactions: [Transaction]) {
@@ -21,6 +23,17 @@ class BallanceViewModel {
             } else {
                 self.transactionGroups[dateKey]!.transactions.append(transaction)
             }
+        })
+    }
+    
+    func getBitcoins() -> Double {
+        return bitcoinsAmount
+    }
+    
+    func getBitcoinsInDollars(completion: @escaping (Double) -> ()) {
+        NetworkManager.getBitcoinInDollars(completion: {
+            exchange in
+            completion(exchange * self.bitcoinsAmount)
         })
     }
     

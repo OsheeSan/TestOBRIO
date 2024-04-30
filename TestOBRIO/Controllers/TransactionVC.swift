@@ -47,7 +47,7 @@ class TransactionVC: UIViewController {
         button.startColor = UIColor(cgColor: CGColor(red: 7/255, green: 35/255, blue: 115/255, alpha: 1))
         button.endColor = UIColor(cgColor: CGColor(red: 22/255, green: 91/255, blue: 171/255, alpha: 1))
         button.setTitleColor(.white, for: .normal)
-        button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(close), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -149,6 +149,10 @@ class TransactionVC: UIViewController {
         
         
         CoreDataManager.shared.createTransaction(amount: amount, date: .now, category: categories[pageControl.currentPage])
+        self.dismiss(animated: true)
+    }
+    
+    @objc private func close() {
         self.dismiss(animated: true)
     }
     

@@ -76,10 +76,8 @@ class BallanceView: UIView {
         addSubview(blurEffectView)
         
         addSubview(ballanceLabel)
-        ballanceLabel.text = "32.33333"
         addSubview(bitcoinImageView)
         addSubview(ballanceDollarLabel)
-        ballanceDollarLabel.text = "$1805.33333"
         
         addSubview(addBallanceButton)
         addBallanceButton.addTarget(self, action: #selector(addButtonTap), for: .touchUpInside)
@@ -111,6 +109,14 @@ class BallanceView: UIView {
             return
         }
         delegate.addBallanceTap()
+    }
+    
+    func setAmount(_ amount: Double) {
+        self.ballanceLabel.text = "\(amount)"
+    }
+    
+    func setAmountDollars(_ amount: Double) {
+        self.ballanceDollarLabel.text = "$\(amount)"
     }
     
     

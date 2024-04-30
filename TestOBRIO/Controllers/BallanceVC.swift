@@ -49,6 +49,17 @@ class BallanceVC: UIViewController, BallanceViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubviews()
+        loadBallanceData()
+    }
+    
+    private func loadBallanceData() {
+        ballanceView.setAmount(ballanceViewModel.getBitcoins())
+        ballanceViewModel.getBitcoinsInDollars(completion: {
+            amount in
+            DispatchQueue.main.async {
+                self.ballanceView.setAmountDollars(amount)
+            }
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {

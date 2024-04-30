@@ -41,7 +41,6 @@ class TransactionHeaderView: UITableViewHeaderFooterView {
     
     func configure(date: Date) {
         let today = Calendar.current.startOfDay(for: Date())
-            let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: today)!
             if Calendar.current.isDateInToday(date) {
                 label.text = "Today"
             } else if Calendar.current.isDateInYesterday(date) {
