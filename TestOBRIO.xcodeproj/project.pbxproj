@@ -20,6 +20,7 @@
 		8423DA602BE11D020060220E /* BallanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA5F2BE11D020060220E /* BallanceViewModel.swift */; };
 		8423DA622BE121FD0060220E /* TransactionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA612BE121FD0060220E /* TransactionHeaderView.swift */; };
 		8423DA652BE12C6B0060220E /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA642BE12C6B0060220E /* CustomButton.swift */; };
+		8423DA692BE134640060220E /* PopupAddBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA682BE134640060220E /* PopupAddBalanceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		8423DA5F2BE11D020060220E /* BallanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallanceViewModel.swift; sourceTree = "<group>"; };
 		8423DA612BE121FD0060220E /* TransactionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeaderView.swift; sourceTree = "<group>"; };
 		8423DA642BE12C6B0060220E /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		8423DA682BE134640060220E /* PopupAddBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupAddBalanceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				8423DA5D2BE118F90060220E /* TransactionCell.swift */,
 				8423DA612BE121FD0060220E /* TransactionHeaderView.swift */,
 				8423DA642BE12C6B0060220E /* CustomButton.swift */,
+				8423DA682BE134640060220E /* PopupAddBalanceView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				8423DA5E2BE118F90060220E /* TransactionCell.swift in Sources */,
 				8423DA432BE10C750060220E /* TransactionVC.swift in Sources */,
 				8423DA3F2BE10C750060220E /* AppDelegate.swift in Sources */,
+				8423DA692BE134640060220E /* PopupAddBalanceView.swift in Sources */,
 				8423DA652BE12C6B0060220E /* CustomButton.swift in Sources */,
 				8423DA622BE121FD0060220E /* TransactionHeaderView.swift in Sources */,
 				8423DA5C2BE118AA0060220E /* Transaction.swift in Sources */,

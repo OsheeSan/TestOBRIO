@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BallanceVC: UIViewController {
+class BallanceVC: UIViewController, BallanceViewDelegate {
     
     let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -29,6 +29,19 @@ class BallanceVC: UIViewController {
     
     let ballanceView = BallanceView()
     
+    func addBallanceTap() {
+        let popupView = PopupAddBalanceView(frame: view.frame)
+        popupView.delegate = self
+        self.view.addSubview(popupView)
+        popupView.alpha = 0
+        UIView.transition(with: view, duration: 0.3, animations: {
+            popupView.alpha = 1
+        }) {
+            completion in
+        }
+        
+    }
+    
     let tableView = UITableView()
     
     let ballanceViewModel = BallanceViewModel()
@@ -44,6 +57,7 @@ class BallanceVC: UIViewController {
         view.addSubview(backgroundImageView)
         backgroundImageView.frame = view.frame
         ballanceView.translatesAutoresizingMaskIntoConstraints = false
+        ballanceView.delegate = self
         view.addSubview(ballanceView)
         view.addSubview(addTransactionButton)
         NSLayoutConstraint.activate([
