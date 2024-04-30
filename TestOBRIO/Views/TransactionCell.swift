@@ -9,17 +9,17 @@ import UIKit
 
 class TransactionCell: UITableViewCell {
     
-    let timeLabel: UILabel = {
+    private let timeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.textColor = .gray
+        label.textColor = .white
         label.numberOfLines = 0
         label.font = UIFont(name: "Avenir-Book", size: 10)
         return label
     }()
     
-    let amountLabel: UILabel = {
+    private let amountLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
@@ -29,7 +29,7 @@ class TransactionCell: UITableViewCell {
         return label
     }()
     
-    let categoryLabel: UILabel = {
+    private let categoryLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
@@ -38,6 +38,7 @@ class TransactionCell: UITableViewCell {
         label.font = UIFont(name: "Avenir-Book", size: 16)
         return label
     }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .clear
@@ -60,6 +61,14 @@ class TransactionCell: UITableViewCell {
             categoryLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             categoryLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
         ])
+    }
+    
+    func configure(with transaction: Transaction) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        self.timeLabel.text = dateFormatter.string(from: transaction.date)
+        self.amountLabel.text = "\(transaction.amount) bitcoins"
+        self.categoryLabel.text = transaction.category
     }
     
     required init?(coder aDecoder: NSCoder) {
