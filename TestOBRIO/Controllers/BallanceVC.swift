@@ -102,6 +102,55 @@ class BallanceVC: UIViewController, BallanceViewDelegate {
         ])
     }
     
+    func loadMore() {
+        let currentSections = ballanceViewModel.getTransactionGroups()
+        ballanceViewModel.fetcthTransactions()
+        let updatedSections = ballanceViewModel.getTransactionGroups()
+        var indexPaths = [IndexPath]()
+        var newSections = [Int]()
+        
+        //If there are no new Sections
+        if currentSections.count == updatedSections.count {
+            if currentSections[currentSections.count-1].transactions.count < updatedSections[currentSections.count-1].transactions.count {
+                for i in currentSections[currentSections.count-1].transactions.count..<updatedSections[currentSections.count-1].transactions.count {
+                    print(i, currentSections.count-1)
+                    indexPaths.append(IndexPath(row: i, section: currentSections.count-1))
+                }
+            }
+            //If there are new Sections
+        } else if currentSections.count < updatedSections.count {
+            if currentSections[currentSections.count-1].transactions.count < updatedSections[currentSections.count-1].transactions.count {
+                for i in currentSections[currentSections.count-1].transactions.count..<updatedSections[currentSections.count-1].transactions.count {
+                    print(i, currentSections.count-1)
+                    indexPaths.append(IndexPath(row: i, section: currentSections.count-1))
+                }
+            }
+            for newSectionIndex in currentSections.count..<updatedSections.count {
+                newSections.append(newSectionIndex)
+                for i in 0..<updatedSections[newSectionIndex].transactions.count {
+                    indexPaths.append(IndexPath(row: i, section: newSectionIndex))
+                }
+            }
+        }
+        
+        if !newSections.isEmpty && !indexPaths.isEmpty {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute:  {
+                self.tableView.beginUpdates()
+                self.tableView.insertSections(IndexSet(newSections), with: .automatic)
+                self.tableView.insertRows(at: indexPaths, with: .automatic)
+                self.tableView.endUpdates()
+            })
+        } else if !indexPaths.isEmpty {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute:  {
+                self.tableView.beginUpdates()
+                self.tableView.insertRows(at: indexPaths, with: .automatic)
+                self.tableView.endUpdates()
+            })
+        }
+        
+    }
+    
+    
 }
 
 extension BallanceVC: UITableViewDelegate, UITableViewDataSource {
@@ -119,7 +168,7 @@ extension BallanceVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionCell", for: indexPath) as! TransactionCell
-       
+        
         let transaction = ballanceViewModel.getTransactionGroups()[indexPath.section].transactions[indexPath.row]
         
         cell.configure(with: transaction)
@@ -136,6 +185,14 @@ extension BallanceVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.section == ballanceViewModel.getTransactionGroups().count - 1 {
+            if indexPath.row == ballanceViewModel.getTransactionGroups()[indexPath.section].transactions.count - 1 {
+                self.loadMore()
+            }
+        }
     }
     
 }
