@@ -60,6 +60,13 @@ class BallanceVC: UIViewController, BallanceViewDelegate {
         ballanceView.delegate = self
         view.addSubview(ballanceView)
         view.addSubview(addTransactionButton)
+        addTransactionButton.addAction(UIAction() {
+            _ in
+            let vc = TransactionVC()
+            vc.modalTransitionStyle = .crossDissolve
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
+        }, for: .touchUpInside)
         NSLayoutConstraint.activate([
             ballanceView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
             ballanceView.heightAnchor.constraint(equalToConstant: CGFloat(BallanceView.normalHeight)),
@@ -78,11 +85,13 @@ class BallanceVC: UIViewController, BallanceViewDelegate {
         tableView.register(TransactionHeaderView.self, forHeaderFooterViewReuseIdentifier: TransactionHeaderView.reuseIdentifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorInset = .zero
+        tableView.clipsToBounds = true
+        tableView.layer.cornerRadius = 25
         tableView.separatorColor = .white
         tableView.backgroundColor = .clear
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: addTransactionButton.bottomAnchor, constant: 8),
+            tableView.topAnchor.constraint(equalTo: addTransactionButton.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
@@ -119,6 +128,10 @@ extension BallanceVC: UITableViewDelegate, UITableViewDataSource {
         let date = ballanceViewModel.getTransactionGroups()[section].date
         headerView.configure(date: date)
         return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
     }
     
 }

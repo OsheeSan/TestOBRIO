@@ -23,7 +23,8 @@ class TransactionHeaderView: UITableViewHeaderFooterView {
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        
+        self.clipsToBounds = true
+        self.layer.cornerRadius = 25
         contentView.addSubview(label)
         
         NSLayoutConstraint.activate([

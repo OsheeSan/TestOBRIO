@@ -105,8 +105,8 @@
 		8423DA562BE10D2C0060220E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8423DA422BE10C750060220E /* TransactionVC.swift */,
 				8423DA522BE10CBA0060220E /* BallanceVC.swift */,
+				8423DA422BE10C750060220E /* TransactionVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
