@@ -148,7 +148,7 @@ class TransactionVC: UIViewController {
         }
         
         
-        CoreDataManager.shared.createTransaction(amount: amount, date: Calendar.current.date(byAdding: .day, value: -1, to: Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: Date())!)!, category: categories[pageControl.currentPage])
+        CoreDataManager.shared.createTransaction(amount: amount, date: .now, category: categories[pageControl.currentPage])
         self.dismiss(animated: true)
     }
     
