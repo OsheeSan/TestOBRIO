@@ -14,6 +14,7 @@
 		8423DA482BE10C760060220E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8423DA472BE10C760060220E /* Assets.xcassets */; };
 		8423DA4B2BE10C760060220E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8423DA492BE10C760060220E /* LaunchScreen.storyboard */; };
 		8423DA532BE10CBA0060220E /* BallanceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA522BE10CBA0060220E /* BallanceVC.swift */; };
+		8423DA582BE1145B0060220E /* BallanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA572BE1145B0060220E /* BallanceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		8423DA4A2BE10C760060220E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8423DA4C2BE10C760060220E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8423DA522BE10CBA0060220E /* BallanceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallanceVC.swift; sourceTree = "<group>"; };
+		8423DA572BE1145B0060220E /* BallanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallanceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		8423DA3D2BE10C750060220E /* TestOBRIO */ = {
 			isa = PBXGroup;
 			children = (
+				8423DA592BE114630060220E /* Views */,
 				8423DA562BE10D2C0060220E /* Controllers */,
 				8423DA552BE10D1F0060220E /* Assets */,
 				8423DA542BE10CFE0060220E /* System */,
@@ -92,6 +95,14 @@
 				8423DA522BE10CBA0060220E /* BallanceVC.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8423DA592BE114630060220E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8423DA572BE1145B0060220E /* BallanceView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,6 +178,7 @@
 			files = (
 				8423DA432BE10C750060220E /* TransactionVC.swift in Sources */,
 				8423DA3F2BE10C750060220E /* AppDelegate.swift in Sources */,
+				8423DA582BE1145B0060220E /* BallanceView.swift in Sources */,
 				8423DA532BE10CBA0060220E /* BallanceVC.swift in Sources */,
 				8423DA412BE10C750060220E /* SceneDelegate.swift in Sources */,
 			);
