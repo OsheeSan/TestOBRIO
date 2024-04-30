@@ -16,9 +16,9 @@ class BallanceVC: UIViewController {
         return imageView
     }()
     
-    let addBallanceButton: CustomButton = {
+    let addTransactionButton: CustomButton = {
         let button = CustomButton()
-        button.setTitle("Add Ballance", for: .normal)
+        button.setTitle("Add Transaction", for: .normal)
         button.titleLabel?.font = UIFont(name: "Avenir-Book", size: 30)
         button.startColor = UIColor(cgColor: CGColor(red: 7/255, green: 35/255, blue: 115/255, alpha: 1))
         button.endColor = UIColor(cgColor: CGColor(red: 22/255, green: 91/255, blue: 171/255, alpha: 1))
@@ -45,17 +45,17 @@ class BallanceVC: UIViewController {
         backgroundImageView.frame = view.frame
         ballanceView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(ballanceView)
-        view.addSubview(addBallanceButton)
+        view.addSubview(addTransactionButton)
         NSLayoutConstraint.activate([
             ballanceView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
             ballanceView.heightAnchor.constraint(equalToConstant: CGFloat(BallanceView.normalHeight)),
             ballanceView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -8),
             ballanceView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 8),
             
-            addBallanceButton.topAnchor.constraint(equalTo: ballanceView.bottomAnchor, constant: 8),
-            addBallanceButton.heightAnchor.constraint(equalToConstant: 60),
-            addBallanceButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -8),
-            addBallanceButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 8),
+            addTransactionButton.topAnchor.constraint(equalTo: ballanceView.bottomAnchor, constant: 8),
+            addTransactionButton.heightAnchor.constraint(equalToConstant: 60),
+            addTransactionButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -8),
+            addTransactionButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 8),
         ])
         
         tableView.delegate = self
@@ -68,7 +68,7 @@ class BallanceVC: UIViewController {
         tableView.backgroundColor = .clear
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: addBallanceButton.bottomAnchor, constant: 8),
+            tableView.topAnchor.constraint(equalTo: addTransactionButton.bottomAnchor, constant: 8),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)

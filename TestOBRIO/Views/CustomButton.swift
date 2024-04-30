@@ -9,12 +9,12 @@ import UIKit
 
 class CustomButton: UIButton {
     
-    var startColor: UIColor = UIColor.red {
+    var startColor: UIColor = UIColor.tintColor {
         didSet {
             updateGradient()
         }
     }
-    var endColor: UIColor = UIColor.yellow {
+    var endColor: UIColor = UIColor.tintColor {
         didSet {
             updateGradient()
         }
