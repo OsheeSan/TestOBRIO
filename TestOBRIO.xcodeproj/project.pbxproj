@@ -15,6 +15,10 @@
 		8423DA4B2BE10C760060220E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8423DA492BE10C760060220E /* LaunchScreen.storyboard */; };
 		8423DA532BE10CBA0060220E /* BallanceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA522BE10CBA0060220E /* BallanceVC.swift */; };
 		8423DA582BE1145B0060220E /* BallanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA572BE1145B0060220E /* BallanceView.swift */; };
+		8423DA5C2BE118AA0060220E /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA5B2BE118AA0060220E /* Transaction.swift */; };
+		8423DA5E2BE118F90060220E /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA5D2BE118F90060220E /* TransactionCell.swift */; };
+		8423DA602BE11D020060220E /* BallanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA5F2BE11D020060220E /* BallanceViewModel.swift */; };
+		8423DA622BE121FD0060220E /* TransactionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA612BE121FD0060220E /* TransactionHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,10 @@
 		8423DA4C2BE10C760060220E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8423DA522BE10CBA0060220E /* BallanceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallanceVC.swift; sourceTree = "<group>"; };
 		8423DA572BE1145B0060220E /* BallanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallanceView.swift; sourceTree = "<group>"; };
+		8423DA5B2BE118AA0060220E /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		8423DA5D2BE118F90060220E /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
+		8423DA5F2BE11D020060220E /* BallanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallanceViewModel.swift; sourceTree = "<group>"; };
+		8423DA612BE121FD0060220E /* TransactionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,10 +68,13 @@
 		8423DA3D2BE10C750060220E /* TestOBRIO */ = {
 			isa = PBXGroup;
 			children = (
+				8423DA552BE10D1F0060220E /* Assets */,
+				8423DA5A2BE118970060220E /* Models */,
+				8423DA632BE1282E0060220E /* ViewModels */,
 				8423DA592BE114630060220E /* Views */,
 				8423DA562BE10D2C0060220E /* Controllers */,
-				8423DA552BE10D1F0060220E /* Assets */,
 				8423DA542BE10CFE0060220E /* System */,
+				8423DA5F2BE11D020060220E /* BallanceViewModel.swift */,
 			);
 			path = TestOBRIO;
 			sourceTree = "<group>";
@@ -101,8 +112,25 @@
 			isa = PBXGroup;
 			children = (
 				8423DA572BE1145B0060220E /* BallanceView.swift */,
+				8423DA5D2BE118F90060220E /* TransactionCell.swift */,
+				8423DA612BE121FD0060220E /* TransactionHeaderView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		8423DA5A2BE118970060220E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8423DA5B2BE118AA0060220E /* Transaction.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8423DA632BE1282E0060220E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,8 +204,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8423DA602BE11D020060220E /* BallanceViewModel.swift in Sources */,
+				8423DA5E2BE118F90060220E /* TransactionCell.swift in Sources */,
 				8423DA432BE10C750060220E /* TransactionVC.swift in Sources */,
 				8423DA3F2BE10C750060220E /* AppDelegate.swift in Sources */,
+				8423DA622BE121FD0060220E /* TransactionHeaderView.swift in Sources */,
+				8423DA5C2BE118AA0060220E /* Transaction.swift in Sources */,
 				8423DA582BE1145B0060220E /* BallanceView.swift in Sources */,
 				8423DA532BE10CBA0060220E /* BallanceVC.swift in Sources */,
 				8423DA412BE10C750060220E /* SceneDelegate.swift in Sources */,

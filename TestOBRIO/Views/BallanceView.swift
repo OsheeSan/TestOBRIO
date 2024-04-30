@@ -27,7 +27,7 @@ class BallanceView: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-
+    
     let ballanceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -79,5 +79,6 @@ class BallanceView: UIView {
             ballanceDollarLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8)
         ])
     }
+    
     
 }
