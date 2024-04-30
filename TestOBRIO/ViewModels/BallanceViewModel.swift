@@ -24,6 +24,18 @@ class BallanceViewModel {
         })
     }
     
+    func reloadData() {
+        transactionGroups = [:]
+        CoreDataManager.shared.offset = 0
+        let newTransactions = CoreDataManager.shared.fetchTransactions()
+        addTransactions(newTransactions)
+    }
+    
+    func fetcthTransactions() {
+        let newTransactions = CoreDataManager.shared.fetchTransactions()
+        addTransactions(newTransactions)
+    }
+    
     func getTransactionGroups() -> [TransactionGroup] {
         transactionGroups.values.sorted { $0.date > $1.date }
     }

@@ -49,7 +49,11 @@ class BallanceVC: UIViewController, BallanceViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubviews()
-        ballanceViewModel.addTransactions(TransactionTestDataSource.transactions)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        ballanceViewModel.reloadData()
         tableView.reloadData()
     }
     

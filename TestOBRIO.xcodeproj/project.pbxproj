@@ -21,6 +21,9 @@
 		8423DA622BE121FD0060220E /* TransactionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA612BE121FD0060220E /* TransactionHeaderView.swift */; };
 		8423DA652BE12C6B0060220E /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA642BE12C6B0060220E /* CustomButton.swift */; };
 		8423DA692BE134640060220E /* PopupAddBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA682BE134640060220E /* PopupAddBalanceView.swift */; };
+		8423DAA22BE161580060220E /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8423DAA02BE161580060220E /* Data.xcdatamodeld */; };
+		8423DAAD2BE163850060220E /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DAAC2BE163850060220E /* CoreDataManager.swift */; };
+		8423DAAF2BE16C3F0060220E /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DAAE2BE16C3F0060220E /* CategoryCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		8423DA612BE121FD0060220E /* TransactionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeaderView.swift; sourceTree = "<group>"; };
 		8423DA642BE12C6B0060220E /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		8423DA682BE134640060220E /* PopupAddBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupAddBalanceView.swift; sourceTree = "<group>"; };
+		8423DAA12BE161580060220E /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
+		8423DAAC2BE163850060220E /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		8423DAAE2BE16C3F0060220E /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +125,7 @@
 				8423DA612BE121FD0060220E /* TransactionHeaderView.swift */,
 				8423DA642BE12C6B0060220E /* CustomButton.swift */,
 				8423DA682BE134640060220E /* PopupAddBalanceView.swift */,
+				8423DAAE2BE16C3F0060220E /* CategoryCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -127,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				8423DA5B2BE118AA0060220E /* Transaction.swift */,
+				8423DAA02BE161580060220E /* Data.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -135,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				8423DA5F2BE11D020060220E /* BallanceViewModel.swift */,
+				8423DAAC2BE163850060220E /* CoreDataManager.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -213,10 +222,13 @@
 				8423DA602BE11D020060220E /* BallanceViewModel.swift in Sources */,
 				8423DA5E2BE118F90060220E /* TransactionCell.swift in Sources */,
 				8423DA432BE10C750060220E /* TransactionVC.swift in Sources */,
+				8423DAAF2BE16C3F0060220E /* CategoryCell.swift in Sources */,
 				8423DA3F2BE10C750060220E /* AppDelegate.swift in Sources */,
 				8423DA692BE134640060220E /* PopupAddBalanceView.swift in Sources */,
 				8423DA652BE12C6B0060220E /* CustomButton.swift in Sources */,
 				8423DA622BE121FD0060220E /* TransactionHeaderView.swift in Sources */,
+				8423DAAD2BE163850060220E /* CoreDataManager.swift in Sources */,
+				8423DAA22BE161580060220E /* Data.xcdatamodeld in Sources */,
 				8423DA5C2BE118AA0060220E /* Transaction.swift in Sources */,
 				8423DA582BE1145B0060220E /* BallanceView.swift in Sources */,
 				8423DA532BE10CBA0060220E /* BallanceVC.swift in Sources */,
@@ -443,6 +455,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8423DAA02BE161580060220E /* Data.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8423DAA12BE161580060220E /* Data.xcdatamodel */,
+			);
+			currentVersion = 8423DAA12BE161580060220E /* Data.xcdatamodel */;
+			path = Data.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8423DA332BE10C740060220E /* Project object */;
 }

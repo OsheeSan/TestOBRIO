@@ -135,6 +135,20 @@ class TransactionVC: UIViewController {
     }
     
     @objc private func addButtonTapped() {
+        guard let amountString = amountTextField.text, var amount = Double(String(amountString.map {
+            $0 == "," ? "." : $0
+        })) else {
+            let alert = UIAlertController(title: "Careful!", message: "Invalid amount", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+            return
+        }
+        if valueSegmentControl.selectedSegmentIndex == 1 {
+            amount *= -1
+        }
+        
+        
+        CoreDataManager.shared.createTransaction(amount: amount, date: .now, category: categories[pageControl.currentPage])
         self.dismiss(animated: true)
     }
     
@@ -156,46 +170,10 @@ extension TransactionVC: UICollectionViewDataSource, UICollectionViewDelegateFlo
     }
 }
 
-class CategoryCell: UICollectionViewCell {
-    let categoryLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = .white
-        label.font = UIFont(name: "Avenir-Book", size: 16)
-        return label
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        addSubview(categoryLabel)
-        categoryLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            categoryLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            categoryLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
-        ])
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
 extension TransactionVC: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageIndex = round(scrollView.contentOffset.x / categoriesCollectionView.frame.width)
         pageControl.currentPage = Int(pageIndex)
-        updateArrowVisibility()
-    }
-    
-    private func updateArrowVisibility() {
-        let totalWidth = categoriesCollectionView.contentSize.width
-        let visibleWidth = categoriesCollectionView.bounds.width
-        let offset = categoriesCollectionView.contentOffset.x
-        
-        let showLeftArrow = offset > 0
-        let showRightArrow = offset < totalWidth - visibleWidth
-        
-        // Show or hide arrows based on conditions
     }
 }
 

@@ -6,25 +6,29 @@
 //
 
 import Foundation
+import CoreData
 
-struct Transaction {
-    let date: Date
-    let amount: Double
-    let category: String
+public class Transaction: NSManagedObject {
+
+}
+
+extension Transaction {
+
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Transaction> {
+        return NSFetchRequest<Transaction>(entityName: "Transaction")
+    }
+
+    @NSManaged public var date: Date
+    @NSManaged public var amount: Double
+    @NSManaged public var category: String
+
+}
+
+extension Transaction : Identifiable {
+
 }
 
 struct TransactionGroup {
     var date: Date
     var transactions: [Transaction]
-}
-
-
-class TransactionTestDataSource {
-    static var transactions: [Transaction] = [
-        Transaction(date: Date(), amount: 0.5, category: "groceries"),
-        Transaction(date: Calendar.current.date(byAdding: .day, value: -2, to: Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: Date())!)!, amount: -10.0, category: "taxi"),
-        Transaction(date: Date(), amount: 20.0, category: "electronics"),
-        Transaction(date: Date(), amount: 30.0, category: "restaurant"),
-        Transaction(date: Date(), amount: 40.0, category: "other"),
-    ]
 }
