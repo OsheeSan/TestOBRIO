@@ -62,6 +62,11 @@ class BalanceManager {
         exchange * bitcoinsAmount
     }
     
+    func setExchange(_ exchange: Double) {
+        self.exchange = exchange
+        presenter?.updateBalance()
+    }
+    
     func reloadData() {
         transactionGroups = [:]
         CoreDataManager.shared.offset = 0

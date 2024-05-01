@@ -31,6 +31,10 @@ class SessionManager {
     }
     
     private func executeMethod() {
+        NetworkManager.getBitcoinInDollars(completion: {
+            exchange in
+            BalanceManager.shared.setExchange(exchange)
+        })
         lastExecutionTime = Date()
         UserDefaults.standard.set(lastExecutionTime, forKey: "lastExecutionTime")
     }
