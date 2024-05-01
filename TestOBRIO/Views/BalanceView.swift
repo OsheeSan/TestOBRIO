@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol BallanceViewDelegate {
-    func addBallanceTap()
+protocol BalanceViewDelegate {
+    func addBalanceTap()
 }
 
-class BallanceView: UIView {
+class BalanceView: UIView {
     
-    var delegate: BallanceViewDelegate?
+    var delegate: BalanceViewDelegate?
     
     static let normalHeight = 150
     
@@ -34,7 +34,7 @@ class BallanceView: UIView {
         return imageView
     }()
     
-    let ballanceLabel: UILabel = {
+    let balanceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
@@ -44,7 +44,7 @@ class BallanceView: UIView {
         return label
     }()
     
-    let ballanceDollarLabel: UILabel = {
+    let balanceDollarLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
@@ -54,9 +54,9 @@ class BallanceView: UIView {
         return label
     }()
     
-    let addBallanceButton: CustomButton = {
+    let addBalanceButton: CustomButton = {
         let button = CustomButton()
-        button.setTitle("Add Ballance", for: .normal)
+        button.setTitle("Add", for: .normal)
         button.titleLabel?.font = UIFont(name: "Avenir-Book", size: 16)
         button.startColor = UIColor(cgColor: CGColor(red: 7/255, green: 35/255, blue: 115/255, alpha: 1))
         button.endColor = UIColor(cgColor: CGColor(red: 22/255, green: 91/255, blue: 171/255, alpha: 1))
@@ -75,12 +75,12 @@ class BallanceView: UIView {
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(blurEffectView)
         
-        addSubview(ballanceLabel)
+        addSubview(balanceLabel)
         addSubview(bitcoinImageView)
-        addSubview(ballanceDollarLabel)
+        addSubview(balanceDollarLabel)
         
-        addSubview(addBallanceButton)
-        addBallanceButton.addTarget(self, action: #selector(addButtonTap), for: .touchUpInside)
+        addSubview(addBalanceButton)
+        addBalanceButton.addTarget(self, action: #selector(addButtonTap), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             bitcoinImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
@@ -88,19 +88,19 @@ class BallanceView: UIView {
             bitcoinImageView.widthAnchor.constraint(equalToConstant: 100),
             bitcoinImageView.heightAnchor.constraint(equalToConstant: 100),
             
-            ballanceLabel.leftAnchor.constraint(equalTo: bitcoinImageView.rightAnchor, constant: 8),
-            ballanceLabel.topAnchor.constraint(equalTo: bitcoinImageView.topAnchor),
-            ballanceLabel.bottomAnchor.constraint(equalTo: centerYAnchor),
-            ballanceLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
+            balanceLabel.leftAnchor.constraint(equalTo: bitcoinImageView.rightAnchor, constant: 8),
+            balanceLabel.topAnchor.constraint(equalTo: bitcoinImageView.topAnchor),
+            balanceLabel.bottomAnchor.constraint(equalTo: centerYAnchor),
+            balanceLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
             
-            ballanceDollarLabel.leftAnchor.constraint(equalTo: bitcoinImageView.rightAnchor, constant: 8),
-            ballanceDollarLabel.topAnchor.constraint(equalTo: ballanceLabel.bottomAnchor),
-            ballanceDollarLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
+            balanceDollarLabel.leftAnchor.constraint(equalTo: bitcoinImageView.rightAnchor, constant: 8),
+            balanceDollarLabel.topAnchor.constraint(equalTo: balanceLabel.bottomAnchor),
+            balanceDollarLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
             
-            addBallanceButton.leftAnchor.constraint(equalTo: bitcoinImageView.rightAnchor, constant: 8),
-            addBallanceButton.topAnchor.constraint(equalTo: ballanceDollarLabel.bottomAnchor, constant: 8),
-            addBallanceButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
-            addBallanceButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
+            addBalanceButton.leftAnchor.constraint(equalTo: bitcoinImageView.rightAnchor, constant: 8),
+            addBalanceButton.topAnchor.constraint(equalTo: balanceDollarLabel.bottomAnchor, constant: 8),
+            addBalanceButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            addBalanceButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
         ])
     }
     
@@ -108,15 +108,15 @@ class BallanceView: UIView {
         guard let delegate = delegate else {
             return
         }
-        delegate.addBallanceTap()
+        delegate.addBalanceTap()
     }
     
     func setAmount(_ amount: Double) {
-        self.ballanceLabel.text = "\(amount)"
+        self.balanceLabel.text = "\(amount)"
     }
     
     func setAmountDollars(_ amount: Double) {
-        self.ballanceDollarLabel.text = "$\(amount)"
+        self.balanceDollarLabel.text = "$\(amount)"
     }
     
     

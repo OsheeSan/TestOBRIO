@@ -13,11 +13,11 @@
 		8423DA462BE10C750060220E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8423DA442BE10C750060220E /* Main.storyboard */; };
 		8423DA482BE10C760060220E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8423DA472BE10C760060220E /* Assets.xcassets */; };
 		8423DA4B2BE10C760060220E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8423DA492BE10C760060220E /* LaunchScreen.storyboard */; };
-		8423DA532BE10CBA0060220E /* BallanceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA522BE10CBA0060220E /* BallanceVC.swift */; };
-		8423DA582BE1145B0060220E /* BallanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA572BE1145B0060220E /* BallanceView.swift */; };
+		8423DA532BE10CBA0060220E /* BalanceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA522BE10CBA0060220E /* BalanceVC.swift */; };
+		8423DA582BE1145B0060220E /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA572BE1145B0060220E /* BalanceView.swift */; };
 		8423DA5C2BE118AA0060220E /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA5B2BE118AA0060220E /* Transaction.swift */; };
 		8423DA5E2BE118F90060220E /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA5D2BE118F90060220E /* TransactionCell.swift */; };
-		8423DA602BE11D020060220E /* BallanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA5F2BE11D020060220E /* BallanceViewModel.swift */; };
+		8423DA602BE11D020060220E /* BalanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA5F2BE11D020060220E /* BalanceManager.swift */; };
 		8423DA622BE121FD0060220E /* TransactionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA612BE121FD0060220E /* TransactionHeaderView.swift */; };
 		8423DA652BE12C6B0060220E /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA642BE12C6B0060220E /* CustomButton.swift */; };
 		8423DA692BE134640060220E /* PopupAddBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DA682BE134640060220E /* PopupAddBalanceView.swift */; };
@@ -26,6 +26,8 @@
 		8423DAAF2BE16C3F0060220E /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423DAAE2BE16C3F0060220E /* CategoryCell.swift */; };
 		84F95FC22BE186CC0056A984 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F95FC12BE186CC0056A984 /* NetworkManager.swift */; };
 		84F95FC42BE187980056A984 /* URLReqestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F95FC32BE187980056A984 /* URLReqestModels.swift */; };
+		84F95FC62BE194A70056A984 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F95FC52BE194A70056A984 /* SessionManager.swift */; };
+		84F95FC82BE2670E0056A984 /* Bitcoins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F95FC72BE2670E0056A984 /* Bitcoins.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,11 +39,11 @@
 		8423DA472BE10C760060220E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8423DA4A2BE10C760060220E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8423DA4C2BE10C760060220E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8423DA522BE10CBA0060220E /* BallanceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallanceVC.swift; sourceTree = "<group>"; };
-		8423DA572BE1145B0060220E /* BallanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallanceView.swift; sourceTree = "<group>"; };
+		8423DA522BE10CBA0060220E /* BalanceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceVC.swift; sourceTree = "<group>"; };
+		8423DA572BE1145B0060220E /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
 		8423DA5B2BE118AA0060220E /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		8423DA5D2BE118F90060220E /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
-		8423DA5F2BE11D020060220E /* BallanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallanceViewModel.swift; sourceTree = "<group>"; };
+		8423DA5F2BE11D020060220E /* BalanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceManager.swift; sourceTree = "<group>"; };
 		8423DA612BE121FD0060220E /* TransactionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHeaderView.swift; sourceTree = "<group>"; };
 		8423DA642BE12C6B0060220E /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		8423DA682BE134640060220E /* PopupAddBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupAddBalanceView.swift; sourceTree = "<group>"; };
@@ -50,6 +52,8 @@
 		8423DAAE2BE16C3F0060220E /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		84F95FC12BE186CC0056A984 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		84F95FC32BE187980056A984 /* URLReqestModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLReqestModels.swift; sourceTree = "<group>"; };
+		84F95FC52BE194A70056A984 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		84F95FC72BE2670E0056A984 /* Bitcoins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bitcoins.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +88,7 @@
 			children = (
 				8423DA552BE10D1F0060220E /* Assets */,
 				8423DA5A2BE118970060220E /* Models */,
-				8423DA632BE1282E0060220E /* Managers-Helpers */,
+				8423DA632BE1282E0060220E /* Managers */,
 				8423DA592BE114630060220E /* Views */,
 				8423DA562BE10D2C0060220E /* Controllers */,
 				8423DA542BE10CFE0060220E /* System */,
@@ -115,7 +119,7 @@
 		8423DA562BE10D2C0060220E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8423DA522BE10CBA0060220E /* BallanceVC.swift */,
+				8423DA522BE10CBA0060220E /* BalanceVC.swift */,
 				8423DA422BE10C750060220E /* TransactionVC.swift */,
 			);
 			path = Controllers;
@@ -124,7 +128,7 @@
 		8423DA592BE114630060220E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8423DA572BE1145B0060220E /* BallanceView.swift */,
+				8423DA572BE1145B0060220E /* BalanceView.swift */,
 				8423DA5D2BE118F90060220E /* TransactionCell.swift */,
 				8423DA612BE121FD0060220E /* TransactionHeaderView.swift */,
 				8423DA642BE12C6B0060220E /* CustomButton.swift */,
@@ -140,18 +144,20 @@
 				8423DA5B2BE118AA0060220E /* Transaction.swift */,
 				8423DAA02BE161580060220E /* Data.xcdatamodeld */,
 				84F95FC32BE187980056A984 /* URLReqestModels.swift */,
+				84F95FC72BE2670E0056A984 /* Bitcoins.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		8423DA632BE1282E0060220E /* Managers-Helpers */ = {
+		8423DA632BE1282E0060220E /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				8423DA5F2BE11D020060220E /* BallanceViewModel.swift */,
+				8423DA5F2BE11D020060220E /* BalanceManager.swift */,
 				8423DAAC2BE163850060220E /* CoreDataManager.swift */,
 				84F95FC12BE186CC0056A984 /* NetworkManager.swift */,
+				84F95FC52BE194A70056A984 /* SessionManager.swift */,
 			);
-			path = "Managers-Helpers";
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,7 +231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8423DA602BE11D020060220E /* BallanceViewModel.swift in Sources */,
+				8423DA602BE11D020060220E /* BalanceManager.swift in Sources */,
 				8423DA5E2BE118F90060220E /* TransactionCell.swift in Sources */,
 				8423DA432BE10C750060220E /* TransactionVC.swift in Sources */,
 				8423DAAF2BE16C3F0060220E /* CategoryCell.swift in Sources */,
@@ -235,12 +241,14 @@
 				8423DA622BE121FD0060220E /* TransactionHeaderView.swift in Sources */,
 				8423DAAD2BE163850060220E /* CoreDataManager.swift in Sources */,
 				8423DAA22BE161580060220E /* Data.xcdatamodeld in Sources */,
+				84F95FC82BE2670E0056A984 /* Bitcoins.swift in Sources */,
 				8423DA5C2BE118AA0060220E /* Transaction.swift in Sources */,
 				84F95FC42BE187980056A984 /* URLReqestModels.swift in Sources */,
-				8423DA582BE1145B0060220E /* BallanceView.swift in Sources */,
+				8423DA582BE1145B0060220E /* BalanceView.swift in Sources */,
 				84F95FC22BE186CC0056A984 /* NetworkManager.swift in Sources */,
-				8423DA532BE10CBA0060220E /* BallanceVC.swift in Sources */,
+				8423DA532BE10CBA0060220E /* BalanceVC.swift in Sources */,
 				8423DA412BE10C750060220E /* SceneDelegate.swift in Sources */,
+				84F95FC62BE194A70056A984 /* SessionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

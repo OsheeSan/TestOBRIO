@@ -7,7 +7,18 @@
 
 import Foundation
 
-class BallanceViewModel {
+protocol BalancePresenter {
+    func updateTransactions()
+    func updateBalance()
+}
+
+class BalanceManager {
+    
+    public static var shared = BalanceManager()
+    
+    var presenter: BalancePresenter?
+    
+    private var exchange: Double = 1
     
     private var bitcoinsAmount: Double = 3
     
@@ -17,7 +28,6 @@ class BallanceViewModel {
         transactions.forEach({
             transaction in
             let dateKey = dateWithoutTime(transaction.date)
-            
             if self.transactionGroups[dateWithoutTime(dateKey)] == nil {
                 self.transactionGroups[dateWithoutTime(dateKey)] = TransactionGroup(date: dateKey, transactions: [transaction])
             } else {
@@ -27,14 +37,29 @@ class BallanceViewModel {
     }
     
     func getBitcoins() -> Double {
+        bitcoinsAmount = CoreDataManager.shared.getBitcoinValue()
         return bitcoinsAmount
     }
     
-    func getBitcoinsInDollars(completion: @escaping (Double) -> ()) {
-        NetworkManager.getBitcoinInDollars(completion: {
-            exchange in
-            completion(exchange * self.bitcoinsAmount)
-        })
+    func addBitcoins(_ amount: Double) {
+        CoreDataManager.shared.createTransaction(amount: amount, date: Date(), category: "")
+        CoreDataManager.shared.addBitcoins(amount)
+        presenter?.updateTransactions()
+        presenter?.updateBalance()
+    }
+    
+    func takeBitcoins(_ amount: Double) {
+        print("Taking \(amount) bitcoins... on ballance \(getBitcoins())")
+        if CoreDataManager.shared.getBitcoinValue() >= amount {
+            CoreDataManager.shared.takeBitcoins(amount)
+        }
+        bitcoinsAmount = CoreDataManager.shared.getBitcoinValue()
+        presenter?.updateTransactions()
+        presenter?.updateBalance()
+    }
+    
+    func getBitcoinsInDollars() -> Double {
+        exchange * bitcoinsAmount
     }
     
     func reloadData() {

@@ -52,13 +52,6 @@ class TransactionVC: UIViewController {
         return button
     }()
     
-    let valueSegmentControl: UISegmentedControl = {
-        let segmentControl = UISegmentedControl(items: ["+","-"])
-        segmentControl.selectedSegmentIndex = 0
-        segmentControl.translatesAutoresizingMaskIntoConstraints = false
-        return segmentControl
-    }()
-    
     let categoriesCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -86,7 +79,6 @@ class TransactionVC: UIViewController {
         backgroundImageView.frame = view.frame
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideKeyboard)))
         view.addSubview(amountTextField)
-        view.addSubview(valueSegmentControl)
         view.addSubview(addButton)
         view.addSubview(backButton)
         view.addSubview(categoriesCollectionView)
@@ -109,13 +101,8 @@ class TransactionVC: UIViewController {
             amountTextField.topAnchor.constraint(equalTo:backButton.bottomAnchor, constant: 30),
             amountTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             amountTextField.widthAnchor.constraint(equalToConstant: 300),
-            
-            valueSegmentControl.topAnchor.constraint(equalTo: amountTextField.bottomAnchor, constant: 8),
-            valueSegmentControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            valueSegmentControl.widthAnchor.constraint(equalToConstant: 300),
-            valueSegmentControl.heightAnchor.constraint(equalToConstant: 50),
    
-            categoriesCollectionView.topAnchor.constraint(equalTo: valueSegmentControl.bottomAnchor, constant: 8),
+            categoriesCollectionView.topAnchor.constraint(equalTo: amountTextField.bottomAnchor, constant: 8),
             categoriesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             categoriesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             categoriesCollectionView.heightAnchor.constraint(equalToConstant: 50),
@@ -143,13 +130,17 @@ class TransactionVC: UIViewController {
             present(alert, animated: true, completion: nil)
             return
         }
-        if valueSegmentControl.selectedSegmentIndex == 1 {
-            amount *= -1
+        
+        if BalanceManager.shared.getBitcoins() >= abs(amount) {
+            CoreDataManager.shared.createTransaction(amount: -abs(amount), date: .now, category: categories[pageControl.currentPage])
+            BalanceManager.shared.takeBitcoins(abs(amount))
+            self.dismiss(animated: true)
+        } else {
+            let alert = UIAlertController(title: "Oops!", message: "you don't have enough bitcoins in your balance.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
         }
-        
-        
-        CoreDataManager.shared.createTransaction(amount: amount, date: .now, category: categories[pageControl.currentPage])
-        self.dismiss(animated: true)
     }
     
     @objc private func close() {

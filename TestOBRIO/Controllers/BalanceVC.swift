@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BallanceVC: UIViewController, BallanceViewDelegate {
+class BalanceVC: UIViewController, BalanceViewDelegate {
     
     let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -27,9 +27,9 @@ class BallanceVC: UIViewController, BallanceViewDelegate {
         return button
     }()
     
-    let ballanceView = BallanceView()
+    let balanceView = BalanceView()
     
-    func addBallanceTap() {
+    func addBalanceTap() {
         let popupView = PopupAddBalanceView(frame: view.frame)
         popupView.delegate = self
         self.view.addSubview(popupView)
@@ -44,7 +44,7 @@ class BallanceVC: UIViewController, BallanceViewDelegate {
     
     let tableView = UITableView()
     
-    let ballanceViewModel = BallanceViewModel()
+    let balanceViewModel = BalanceManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,27 +53,23 @@ class BallanceVC: UIViewController, BallanceViewDelegate {
     }
     
     private func loadBallanceData() {
-        ballanceView.setAmount(ballanceViewModel.getBitcoins())
-        ballanceViewModel.getBitcoinsInDollars(completion: {
-            amount in
-            DispatchQueue.main.async {
-                self.ballanceView.setAmountDollars(amount)
-            }
-        })
+        balanceViewModel.presenter = self
+        balanceView.setAmount(balanceViewModel.getBitcoins())
+        balanceView.setAmountDollars(balanceViewModel.getBitcoinsInDollars())
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        ballanceViewModel.reloadData()
+        balanceViewModel.reloadData()
         tableView.reloadData()
     }
     
     func setupSubviews() {
         view.addSubview(backgroundImageView)
         backgroundImageView.frame = view.frame
-        ballanceView.translatesAutoresizingMaskIntoConstraints = false
-        ballanceView.delegate = self
-        view.addSubview(ballanceView)
+        balanceView.translatesAutoresizingMaskIntoConstraints = false
+        balanceView.delegate = self
+        view.addSubview(balanceView)
         view.addSubview(addTransactionButton)
         addTransactionButton.addAction(UIAction() {
             _ in
@@ -83,12 +79,12 @@ class BallanceVC: UIViewController, BallanceViewDelegate {
             self.present(vc, animated: true)
         }, for: .touchUpInside)
         NSLayoutConstraint.activate([
-            ballanceView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
-            ballanceView.heightAnchor.constraint(equalToConstant: CGFloat(BallanceView.normalHeight)),
-            ballanceView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -8),
-            ballanceView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 8),
+            balanceView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            balanceView.heightAnchor.constraint(equalToConstant: CGFloat(BalanceView.normalHeight)),
+            balanceView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -8),
+            balanceView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 8),
             
-            addTransactionButton.topAnchor.constraint(equalTo: ballanceView.bottomAnchor, constant: 8),
+            addTransactionButton.topAnchor.constraint(equalTo: balanceView.bottomAnchor, constant: 8),
             addTransactionButton.heightAnchor.constraint(equalToConstant: 60),
             addTransactionButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -8),
             addTransactionButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 8),
@@ -114,9 +110,9 @@ class BallanceVC: UIViewController, BallanceViewDelegate {
     }
     
     func loadMore() {
-        let currentSections = ballanceViewModel.getTransactionGroups()
-        ballanceViewModel.fetcthTransactions()
-        let updatedSections = ballanceViewModel.getTransactionGroups()
+        let currentSections = balanceViewModel.getTransactionGroups()
+        balanceViewModel.fetcthTransactions()
+        let updatedSections = balanceViewModel.getTransactionGroups()
         var indexPaths = [IndexPath]()
         var newSections = [Int]()
         
@@ -164,13 +160,13 @@ class BallanceVC: UIViewController, BallanceViewDelegate {
     
 }
 
-extension BallanceVC: UITableViewDelegate, UITableViewDataSource {
+extension BalanceVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return ballanceViewModel.getTransactionGroups().count
+        return balanceViewModel.getTransactionGroups().count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ballanceViewModel.getTransactionGroups()[section].transactions.count
+        return balanceViewModel.getTransactionGroups()[section].transactions.count
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
@@ -180,7 +176,7 @@ extension BallanceVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionCell", for: indexPath) as! TransactionCell
         
-        let transaction = ballanceViewModel.getTransactionGroups()[indexPath.section].transactions[indexPath.row]
+        let transaction = balanceViewModel.getTransactionGroups()[indexPath.section].transactions[indexPath.row]
         
         cell.configure(with: transaction)
         
@@ -189,7 +185,7 @@ extension BallanceVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: TransactionHeaderView.reuseIdentifier) as! TransactionHeaderView
-        let date = ballanceViewModel.getTransactionGroups()[section].date
+        let date = balanceViewModel.getTransactionGroups()[section].date
         headerView.configure(date: date)
         return headerView
     }
@@ -199,8 +195,8 @@ extension BallanceVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.section == ballanceViewModel.getTransactionGroups().count - 1 {
-            if indexPath.row == ballanceViewModel.getTransactionGroups()[indexPath.section].transactions.count - 1 {
+        if indexPath.section == balanceViewModel.getTransactionGroups().count - 1 {
+            if indexPath.row == balanceViewModel.getTransactionGroups()[indexPath.section].transactions.count - 1 {
                 self.loadMore()
             }
         }
@@ -208,6 +204,21 @@ extension BallanceVC: UITableViewDelegate, UITableViewDataSource {
     
 }
 
+extension BalanceVC: BalancePresenter {
+    func updateTransactions() {
+        balanceViewModel.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            self.tableView.reloadData()
+        })
+    }
+    
+    func updateBalance() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            self.balanceView.setAmount(self.balanceViewModel.getBitcoins())
+            self.balanceView.setAmountDollars(self.balanceViewModel.getBitcoinsInDollars())
+        })
+    }
+}
 
 
 

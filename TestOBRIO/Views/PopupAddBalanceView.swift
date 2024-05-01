@@ -14,6 +14,10 @@ class PopupAddBalanceView: UIView {
     private let amountTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Amount"
+        textField.font = UIFont(name: "Avenir-Book", size: 16)
+        textField.backgroundColor = .clear
+        textField.textAlignment = .center
+        textField.textColor = .white
         textField.keyboardType = .decimalPad
         textField.borderStyle = .roundedRect
         return textField
@@ -75,7 +79,7 @@ class PopupAddBalanceView: UIView {
     @objc private func addButtonTapped() {
         guard let amountString = amountTextField.text, let amount = Double(String(amountString.map {
             $0 == "," ? "." : $0
-        })) else {
+        })), amount > 0 else {
             let alert = UIAlertController(title: "Careful!", message: "Invalid amount", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             guard let delegate = delegate else {
@@ -84,7 +88,7 @@ class PopupAddBalanceView: UIView {
             delegate.present(alert, animated: true, completion: nil)
             return
         }
-        print("Adding \(amount) bitcoins to the balance")
+        BalanceManager.shared.addBitcoins(amount)
         hide()
     }
     
