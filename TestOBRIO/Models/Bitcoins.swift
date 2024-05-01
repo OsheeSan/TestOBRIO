@@ -19,6 +19,7 @@ extension Bitcoin {
     }
 
     @NSManaged public var amount: Double
+    @NSManaged public var exchange: Double
 
 }
 

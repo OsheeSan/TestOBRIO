@@ -44,8 +44,6 @@ class BalanceVC: UIViewController, BalanceViewDelegate {
     
     let tableView = UITableView()
     
-    let balanceViewModel = BalanceManager.shared
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubviews()
@@ -53,14 +51,14 @@ class BalanceVC: UIViewController, BalanceViewDelegate {
     }
     
     private func loadBallanceData() {
-        balanceViewModel.presenter = self
-        balanceView.setAmount(balanceViewModel.getBitcoins())
-        balanceView.setAmountDollars(balanceViewModel.getBitcoinsInDollars())
+        BalanceManager.shared.presenter = self
+        balanceView.setAmount(BalanceManager.shared.getBitcoins())
+        balanceView.setAmountDollars(BalanceManager.shared.getBitcoinsInDollars())
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        balanceViewModel.reloadData()
+        BalanceManager.shared.reloadData()
         tableView.reloadData()
     }
     
@@ -110,9 +108,9 @@ class BalanceVC: UIViewController, BalanceViewDelegate {
     }
     
     func loadMore() {
-        let currentSections = balanceViewModel.getTransactionGroups()
-        balanceViewModel.fetcthTransactions()
-        let updatedSections = balanceViewModel.getTransactionGroups()
+        let currentSections = BalanceManager.shared.getTransactionGroups()
+        BalanceManager.shared.fetcthTransactions()
+        let updatedSections = BalanceManager.shared.getTransactionGroups()
         var indexPaths = [IndexPath]()
         var newSections = [Int]()
         
@@ -162,11 +160,11 @@ class BalanceVC: UIViewController, BalanceViewDelegate {
 
 extension BalanceVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return balanceViewModel.getTransactionGroups().count
+        return BalanceManager.shared.getTransactionGroups().count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return balanceViewModel.getTransactionGroups()[section].transactions.count
+        return BalanceManager.shared.getTransactionGroups()[section].transactions.count
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
@@ -176,7 +174,7 @@ extension BalanceVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionCell", for: indexPath) as! TransactionCell
         
-        let transaction = balanceViewModel.getTransactionGroups()[indexPath.section].transactions[indexPath.row]
+        let transaction = BalanceManager.shared.getTransactionGroups()[indexPath.section].transactions[indexPath.row]
         
         cell.configure(with: transaction)
         
@@ -185,7 +183,7 @@ extension BalanceVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: TransactionHeaderView.reuseIdentifier) as! TransactionHeaderView
-        let date = balanceViewModel.getTransactionGroups()[section].date
+        let date = BalanceManager.shared.getTransactionGroups()[section].date
         headerView.configure(date: date)
         return headerView
     }
@@ -195,8 +193,8 @@ extension BalanceVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.section == balanceViewModel.getTransactionGroups().count - 1 {
-            if indexPath.row == balanceViewModel.getTransactionGroups()[indexPath.section].transactions.count - 1 {
+        if indexPath.section == BalanceManager.shared.getTransactionGroups().count - 1 {
+            if indexPath.row == BalanceManager.shared.getTransactionGroups()[indexPath.section].transactions.count - 1 {
                 self.loadMore()
             }
         }
@@ -206,7 +204,7 @@ extension BalanceVC: UITableViewDelegate, UITableViewDataSource {
 
 extension BalanceVC: BalancePresenter {
     func updateTransactions() {
-        balanceViewModel.reloadData()
+        BalanceManager.shared.reloadData()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
             self.tableView.reloadData()
         })
@@ -214,8 +212,8 @@ extension BalanceVC: BalancePresenter {
     
     func updateBalance() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-            self.balanceView.setAmount(self.balanceViewModel.getBitcoins())
-            self.balanceView.setAmountDollars(self.balanceViewModel.getBitcoinsInDollars())
+            self.balanceView.setAmount(BalanceManager.shared.getBitcoins())
+            self.balanceView.setAmountDollars(BalanceManager.shared.getBitcoinsInDollars())
         })
     }
 }

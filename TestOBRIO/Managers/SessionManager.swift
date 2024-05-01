@@ -19,23 +19,31 @@ class SessionManager {
     
     func executeIfNeeded() {
         guard let lastExecutionTime = lastExecutionTime else {
-            executeMethod()
+            executeMethod(updated: true)
+            print("Need")
             return
         }
         
         let currentTime = Date()
         
         if currentTime.timeIntervalSince(lastExecutionTime) >= sessionInterval {
-            executeMethod()
+            executeMethod(updated: true)
+            print("Need")
+        } else {
+            executeMethod(updated: false)
         }
     }
     
-    private func executeMethod() {
-        NetworkManager.getBitcoinInDollars(completion: {
-            exchange in
-            BalanceManager.shared.setExchange(exchange)
-        })
-        lastExecutionTime = Date()
-        UserDefaults.standard.set(lastExecutionTime, forKey: "lastExecutionTime")
+    private func executeMethod(updated: Bool) {
+        if updated {
+            NetworkManager.getBitcoinInDollars(completion: {
+                exchange in
+                BalanceManager.shared.setExchange(exchange)
+            })
+            lastExecutionTime = Date()
+            UserDefaults.standard.set(lastExecutionTime, forKey: "lastExecutionTime")
+        } else {
+            BalanceManager.shared.setExchange(BitcoinManager.shared.getBitcoinExchange())
+        }
     }
 }

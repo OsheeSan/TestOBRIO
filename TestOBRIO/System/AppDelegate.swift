@@ -13,15 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         return true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute:  {
-            print("Active")
-        })
-    }
-    
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute:  {
-            print("Active")
-        })  // Приложение снова становится активным после того, как было в фоне
     }
 
     // MARK: UISceneSession Lifecycle

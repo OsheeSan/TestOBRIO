@@ -132,7 +132,7 @@ class TransactionVC: UIViewController {
         }
         
         if BalanceManager.shared.getBitcoins() >= abs(amount) {
-            CoreDataManager.shared.createTransaction(amount: -abs(amount), date: .now, category: categories[pageControl.currentPage])
+            TransactionsManager.shared.createTransaction(amount: -abs(amount), date: .now, category: categories[pageControl.currentPage])
             BalanceManager.shared.takeBitcoins(abs(amount))
             self.dismiss(animated: true)
         } else {

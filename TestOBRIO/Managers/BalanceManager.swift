@@ -37,23 +37,23 @@ class BalanceManager {
     }
     
     func getBitcoins() -> Double {
-        bitcoinsAmount = CoreDataManager.shared.getBitcoinValue()
+        bitcoinsAmount = BitcoinManager.shared.getBitcoinValue()
         return bitcoinsAmount
     }
     
     func addBitcoins(_ amount: Double) {
-        CoreDataManager.shared.createTransaction(amount: amount, date: Date(), category: "")
-        CoreDataManager.shared.addBitcoins(amount)
+        TransactionsManager.shared.createTransaction(amount: amount, date: Date(), category: "")
+        BitcoinManager.shared.addBitcoins(amount)
         presenter?.updateTransactions()
         presenter?.updateBalance()
     }
     
     func takeBitcoins(_ amount: Double) {
         print("Taking \(amount) bitcoins... on ballance \(getBitcoins())")
-        if CoreDataManager.shared.getBitcoinValue() >= amount {
-            CoreDataManager.shared.takeBitcoins(amount)
+        if BitcoinManager.shared.getBitcoinValue() >= amount {
+            BitcoinManager.shared.takeBitcoins(amount)
         }
-        bitcoinsAmount = CoreDataManager.shared.getBitcoinValue()
+        bitcoinsAmount = BitcoinManager.shared.getBitcoinValue()
         presenter?.updateTransactions()
         presenter?.updateBalance()
     }
@@ -63,19 +63,20 @@ class BalanceManager {
     }
     
     func setExchange(_ exchange: Double) {
+        BitcoinManager.shared.setBitcoinExchange(exchange)
         self.exchange = exchange
         presenter?.updateBalance()
     }
     
     func reloadData() {
         transactionGroups = [:]
-        CoreDataManager.shared.offset = 0
-        let newTransactions = CoreDataManager.shared.fetchTransactions()
+        TransactionsManager.shared.offset = 0
+        let newTransactions = TransactionsManager.shared.fetchTransactions()
         addTransactions(newTransactions)
     }
     
     func fetcthTransactions() {
-        let newTransactions = CoreDataManager.shared.fetchTransactions()
+        let newTransactions = TransactionsManager.shared.fetchTransactions()
         addTransactions(newTransactions)
     }
     
