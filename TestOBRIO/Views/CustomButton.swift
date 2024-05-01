@@ -7,6 +7,7 @@
 
 import UIKit
 
+///Custom Gradient Button
 class CustomButton: UIButton {
     
     var startColor: UIColor = UIColor.tintColor {

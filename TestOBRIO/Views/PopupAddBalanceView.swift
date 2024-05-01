@@ -7,6 +7,7 @@
 
 import UIKit
 
+///Popup view to add Bitcoins
 class PopupAddBalanceView: UIView {
     
     var delegate: UIViewController?
@@ -76,6 +77,7 @@ class PopupAddBalanceView: UIView {
         }
     }
     
+    ///Adding bitcoins
     @objc private func addButtonTapped() {
         guard let amountString = amountTextField.text, let amount = Double(String(amountString.map {
             $0 == "," ? "." : $0

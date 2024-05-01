@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Class to download the current bitcoin price from network
 final class NetworkManager {
     
     static func getBitcoinInDollars(completion: @escaping (Double) -> Void) {

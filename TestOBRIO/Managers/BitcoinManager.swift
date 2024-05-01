@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 
+/// Class for interacting with Bitcoin's amount, exchange from CoreData
 class BitcoinManager {
     
     public static let shared = BitcoinManager()
@@ -20,6 +21,7 @@ class BitcoinManager {
         appDelegate.persistentContainer.viewContext
     }
     
+    /// Add value to Bitcoin's amount
     func addBitcoins(_ value: Double) {
         var data: Bitcoin?
         do {
@@ -42,6 +44,7 @@ class BitcoinManager {
         }
     }
     
+    /// Reduces the value of bitcoin's amount
     func takeBitcoins(_ value: Double) {
         var data: Bitcoin?
         do {
@@ -64,6 +67,7 @@ class BitcoinManager {
         }
     }
     
+    /// Returns Bitcoin's amount from CoreData
     func getBitcoinValue() -> Double {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Bitcoin")
         do {
@@ -78,6 +82,7 @@ class BitcoinManager {
         return 0
     }
     
+    ///Returns Bitcoin's exchange from CoreData
     func getBitcoinExchange() -> Double {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Bitcoin")
         do {
@@ -92,6 +97,7 @@ class BitcoinManager {
         return 0
     }
     
+    ///Setting Bitcoin's exchange to CoreData
     func setBitcoinExchange(_ value: Double) {
         var data: Bitcoin?
         do {

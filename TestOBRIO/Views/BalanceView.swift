@@ -7,14 +7,18 @@
 
 import UIKit
 
+///Protocol for triggering BalanceView's ViewController
 protocol BalanceViewDelegate {
     func addBalanceTap()
 }
 
+///Bitcoin balance view
 class BalanceView: UIView {
     
+    ///VC where BalanceView is added
     var delegate: BalanceViewDelegate?
     
+    //Recommended height
     static let normalHeight = 150
     
     override init(frame: CGRect) {
@@ -25,7 +29,7 @@ class BalanceView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     let bitcoinImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit

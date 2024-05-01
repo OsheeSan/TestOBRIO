@@ -7,6 +7,7 @@
 
 import UIKit
 
+///First Screen with bitcoin's amount, transactions list
 class BalanceVC: UIViewController, BalanceViewDelegate {
     
     let backgroundImageView: UIImageView = {
@@ -46,16 +47,18 @@ class BalanceVC: UIViewController, BalanceViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        BalanceManager.shared.presenter = self
         setupSubviews()
         loadBallanceData()
     }
     
+    ///Loading first data
     private func loadBallanceData() {
-        BalanceManager.shared.presenter = self
         balanceView.setAmount(BalanceManager.shared.getBitcoins())
         balanceView.setAmountDollars(BalanceManager.shared.getBitcoinsInDollars())
     }
     
+    ///Update View
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         BalanceManager.shared.reloadData()
@@ -107,6 +110,7 @@ class BalanceVC: UIViewController, BalanceViewDelegate {
         ])
     }
     
+    ///Loading more transaction, adding new section, rows in TableView
     func loadMore() {
         let currentSections = BalanceManager.shared.getTransactionGroups()
         BalanceManager.shared.fetcthTransactions()
@@ -203,6 +207,7 @@ extension BalanceVC: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension BalanceVC: BalancePresenter {
+    ///Update TableView
     func updateTransactions() {
         BalanceManager.shared.reloadData()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
@@ -210,6 +215,7 @@ extension BalanceVC: BalancePresenter {
         })
     }
     
+    ///Update BallanceView
     func updateBalance() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
             self.balanceView.setAmount(BalanceManager.shared.getBitcoins())

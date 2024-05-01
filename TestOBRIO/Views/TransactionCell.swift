@@ -7,6 +7,7 @@
 
 import UIKit
 
+///Transaction TableView Cell
 class TransactionCell: UITableViewCell {
     
     private let timeLabel: UILabel = {

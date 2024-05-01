@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Class for screening application startup sessions
 class SessionManager {
     static let shared = SessionManager()
     
@@ -17,10 +18,10 @@ class SessionManager {
         lastExecutionTime = UserDefaults.standard.value(forKey: "lastExecutionTime") as? Date
     }
     
+    ///Checking the elapsed time since the last session
     func executeIfNeeded() {
         guard let lastExecutionTime = lastExecutionTime else {
             executeMethod(updated: true)
-            print("Need")
             return
         }
         
@@ -28,12 +29,12 @@ class SessionManager {
         
         if currentTime.timeIntervalSince(lastExecutionTime) >= sessionInterval {
             executeMethod(updated: true)
-            print("Need")
         } else {
             executeMethod(updated: false)
         }
     }
     
+    ///Setting the dollar exchange rate
     private func executeMethod(updated: Bool) {
         if updated {
             NetworkManager.getBitcoinInDollars(completion: {

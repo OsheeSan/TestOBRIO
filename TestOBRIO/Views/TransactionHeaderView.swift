@@ -7,6 +7,7 @@
 
 import UIKit
 
+///Transaction Header for TableView
 class TransactionHeaderView: UITableViewHeaderFooterView {
     
     static let reuseIdentifier = "TransactionHeaderView"

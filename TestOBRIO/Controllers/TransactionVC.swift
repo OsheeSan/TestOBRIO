@@ -7,6 +7,7 @@
 
 import UIKit
 
+///Second screen to add new transaction
 class TransactionVC: UIViewController {
     
     let backgroundImageView: UIImageView = {
@@ -121,6 +122,7 @@ class TransactionVC: UIViewController {
         view.endEditing(true)
     }
     
+    ///Add new transaction
     @objc private func addButtonTapped() {
         guard let amountString = amountTextField.text, var amount = Double(String(amountString.map {
             $0 == "," ? "." : $0

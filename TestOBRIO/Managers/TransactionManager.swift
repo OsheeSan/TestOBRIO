@@ -8,13 +8,15 @@
 import CoreData
 import UIKit
 
-
+/// Class for interacting with transactions from CoreData
 public final class TransactionsManager: NSObject {
     
     public static let shared = TransactionsManager()
     private override init() {}
     
+    /// Index of the last loaded transaction
     public var offset = 0
+    /// Number of transactions to be loaded at a time
     private let batchSize = 20
     
     private let appDelegate: AppDelegate = {
@@ -25,6 +27,7 @@ public final class TransactionsManager: NSObject {
         appDelegate.persistentContainer.viewContext
     }
     
+    /// Create new transaction
     public func createTransaction(amount: Double, date: Date, category: String) {
         guard let entityDescription = NSEntityDescription.entity(forEntityName: "Transaction", in: context) else {
             return
@@ -37,6 +40,7 @@ public final class TransactionsManager: NSObject {
         appDelegate.saveContext()
     }
     
+    /// Fetch new group of transactions
     public func fetchTransactions() -> [Transaction] {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Transaction")
         fetchRequest.fetchOffset = offset
@@ -50,7 +54,6 @@ public final class TransactionsManager: NSObject {
         } catch {
             print(error.localizedDescription)
         }
-        
         return []
     }
 
